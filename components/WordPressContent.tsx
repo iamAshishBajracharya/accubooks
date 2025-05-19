@@ -237,7 +237,7 @@ export default async function WordPressContent({ pageId }: any) {
               {page?.acf?.testimonials?.testimonys?.map((testimonial:any, i:number) => (
                  <div className="bg-gray-800 rounded-lg p-6" key = {i}>
                  <div className="flex items-center mb-4">
-                   <div className="w-10 h-10 rounded-full bg-gray-700 mr-3">
+                   <div className="w-10 h-10 rounded-full bg-gray-700 mr-3 overflow-clip object-cover">
                     <Image
                       src={testimonial.image?.url}
                       alt={testimonial.image?.filename}
