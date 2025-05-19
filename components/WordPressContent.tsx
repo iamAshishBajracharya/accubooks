@@ -46,8 +46,10 @@ export default async function WordPressContent({ pageId }: any) {
                 );
               })}
             </nav>
-            <Button className="bg-orange-500 hover:bg-orange-600 text-white">
-              {page?.acf?.header?.cta?.cta_text}
+            <Button asChild className="bg-orange-500 hover:bg-orange-600 text-white">
+              <Link href={page?.acf?.header?.cta?.header_cta_link || '#'}>
+                {page?.acf?.header?.cta?.cta_text}
+              </Link>
             </Button>
           </div>
         </header>
@@ -63,14 +65,20 @@ export default async function WordPressContent({ pageId }: any) {
                   {page?.acf?.hero_section?.subtitle}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                  <Button className="bg-orange-500 hover:bg-orange-600 text-white">
-                    {page?.acf?.hero_section?.primary_cta?.text}
+                  <Button asChild className="bg-orange-500 hover:bg-orange-600 text-white">
+                  <Link href={page?.acf?.hero_section?.primary_cta?.link || '#'}>
+                  {page?.acf?.hero_section?.primary_cta?.text}
+                  </Link>
+                   
                   </Button>
                   <Button
                     variant="outline"
                     className="border-gray-700 hover:bg-gray-800"
+                    asChild
                   >
+                    <Link href={page?.acf?.hero_section?.secondary_cta?.link || '#'}>
                     {page?.acf?.hero_section?.secondary_cta?.text}
+                    </Link>
                   </Button>
                 </div>
                 <div className="flex flex-wrap gap-6">
@@ -123,7 +131,9 @@ export default async function WordPressContent({ pageId }: any) {
 
               <div className="grid md:grid-cols-3 gap-8">
                 {/* BAS Support */}
-                {page?.acf?.services?.service_card?.map((service: { icon: string | Blob | undefined; title: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; description: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; cta: { cta_text: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; }; }, i: Key | null | undefined) => {
+                {page?.acf?.services?.service_card?.map((service: { icon: string | Blob | undefined; title: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; description: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; cta: {
+                  cta_url: string; cta_text: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; 
+}; }, i: Key | null | undefined) => {
                   return (
                     <div className="bg-gray-800 rounded-lg p-8" key = {i}>
                       <div className="text-orange-500 mb-4">
@@ -144,7 +154,9 @@ export default async function WordPressContent({ pageId }: any) {
                         variant="link"
                         className="text-orange-500 p-0 h-auto"
                       >
+                        <Link href={service?.cta?.cta_url || '#'}>
                         {service?.cta?.cta_text}
+                        </Link>
                       </Button>
                     </div>
                   );
@@ -278,13 +290,17 @@ export default async function WordPressContent({ pageId }: any) {
                
               </div>
               <div className="flex gap-4 mt-8">
-                <Button className="bg-orange-500 hover:bg-orange-600 text-white">
-                  <Phone className="h-4 w-4 mr-2" />
-                  Call Us
+                <Button asChild className="bg-orange-500 hover:bg-orange-600 text-white">
+                  <Link href={page?.acf?.contact_us?.primary_cta?.link || '#'}>
+                  <Image src={page?.acf?.contact_us?.primary_cta?.icon} alt={page?.acf?.contact_us?.primary_cta?.text} width={16} height={16} />
+                  {page?.acf?.contact_us?.primary_cta?.text}
+                  </Link>
                 </Button>
                 <Button variant="outline" className="border-gray-700 hover:bg-gray-800">
-                  <Mail className="h-4 w-4 mr-2" />
-                  Email Us
+                  <Image src={page?.acf?.contact_us?.secondary_cta?.icon} alt={page?.acf?.contact_us?.secondary_cta?.text} width={16} height={16} />
+                  <Link href={page?.acf?.contact_us?.secondary_cta?.link || '#'}>
+                  {page?.acf?.contact_us?.secondary_cta?.text}
+                  </Link>
                 </Button>
               </div>
             </div>
