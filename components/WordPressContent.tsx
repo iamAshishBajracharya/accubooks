@@ -16,7 +16,7 @@ export default async function WordPressContent({ pageId }: any) {
   const page = await getPage(pageId);
 
   if (!page) {
-    return <div>No content found</div>;
+    return <div>No content found,</div>;
   }
 
   const navLinks = (page?.acf?.header?.nav_links?.[0] as any) || {};
