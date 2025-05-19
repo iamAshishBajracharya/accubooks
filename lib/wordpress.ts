@@ -96,7 +96,10 @@ export interface WordPressPage {
 const WORDPRESS_API_URL = 'https://ashish.digital6.au/wp-json/wp/v2';
 
 export async function getPage(pageId: number): Promise<WordPressPage> {
-  const response = await fetch(`${WORDPRESS_API_URL}/pages/${pageId}`);
+  const response = await fetch(`${WORDPRESS_API_URL}/pages/${pageId}`, {
+    cache: 'no-store',
+    next: { revalidate: 0 }
+  });
   
   if (!response.ok) {
     throw new Error(`Failed to fetch page: ${response.statusText}`);
@@ -106,7 +109,10 @@ export async function getPage(pageId: number): Promise<WordPressPage> {
 }
 
 export async function getAllPages(): Promise<WordPressPage[]> {
-  const response = await fetch(`${WORDPRESS_API_URL}/pages`);
+  const response = await fetch(`${WORDPRESS_API_URL}/pages`, {
+    cache: 'no-store',
+    next: { revalidate: 0 }
+  });
   
   if (!response.ok) {
     throw new Error(`Failed to fetch pages: ${response.statusText}`);
