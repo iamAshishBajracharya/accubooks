@@ -122,7 +122,7 @@ export default async function WordPressContent({ pageId }: any) {
                   {page?.acf?.services?.subtitle}
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold mt-2">
-                  {page?.acf?.services?.title}s
+                  {page?.acf?.services?.title}
                 </h2>
                 <p className="text-gray-400 mt-4 max-w-3xl mx-auto">
                   {page?.acf?.services?.description}
